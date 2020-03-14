@@ -20,7 +20,8 @@
 						"queryTimeout": "02:00:00"
 					},
 					"sink": {
-						"type": "SqlServerSink"
+						"type": "SqlServerSink",
+						"tableOption": "autoCreate"
 					},
 					"enableStaging": false,
 					"translator": {

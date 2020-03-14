@@ -13,12 +13,8 @@
 				}
 			],
 			"sinks": [],
-			"transformations": [
-				{
-					"name": "Filter1"
-				}
-			],
-			"script": "source(allowSchemaDrift: false,\n\tvalidateSchema: true) ~> source1\nsource1 filter(ERROR_FUNCTION('')) ~> Filter1"
+			"transformations": [],
+			"script": "source(output(\n\t\tsr_no as string,\n\t\temployee_first_name as string,\n\t\temployee_last_name as string,\n\t\tage as string,\n\t\tschool as string,\n\t\tcollege as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false) ~> source1"
 		}
 	}
 }

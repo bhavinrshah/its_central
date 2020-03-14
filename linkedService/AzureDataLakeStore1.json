@@ -1,0 +1,13 @@
+{
+	"name": "AzureDataLakeStore1",
+	"properties": {
+		"annotations": [],
+		"type": "AzureDataLakeStore",
+		"typeProperties": {
+			"dataLakeStoreUri": "https://itscentral.azuredatalakestore.net/webhdfs/v1",
+			"tenant": "76830095-abbe-4e20-a48a-524403036121",
+			"subscriptionId": "6b6cabf2-5c19-404b-919e-fb0e16340582",
+			"resourceGroupName": "its-central"
+		}
+	}
+}

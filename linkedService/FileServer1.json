@@ -1,0 +1,13 @@
+{
+	"name": "FileServer1",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"annotations": [],
+		"type": "FileServer",
+		"typeProperties": {
+			"host": "C:\\Users\\bhavin.shah\\Downloads\\Employee.csv",
+			"userId": "bhavin.shah",
+			"encryptedCredential": "ew0KICAiVmVyc2lvbiI6ICIyMDE3LTExLTMwIiwNCiAgIlByb3RlY3Rpb25Nb2RlIjogIktleSIsDQogICJTZWNyZXRDb250ZW50VHlwZSI6ICJQbGFpbnRleHQiLA0KICAiQ3JlZGVudGlhbElkIjogIklUUy1DRU5UUkFMXzc3MjA0ZDFmLTAyYTUtNDg0OC04NGRlLTRlN2UxZTc0ZjBiOCINCn0="
+		}
+	}
+}

@@ -1,0 +1,24 @@
+{
+	"name": "dataflow2",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "Json1",
+						"type": "DatasetReference"
+					},
+					"name": "source1"
+				}
+			],
+			"sinks": [],
+			"transformations": [
+				{
+					"name": "Filter1"
+				}
+			],
+			"script": "source(allowSchemaDrift: false,\n\tvalidateSchema: true) ~> source1\nsource1 filter(ERROR_FUNCTION('')) ~> Filter1"
+		}
+	}
+}

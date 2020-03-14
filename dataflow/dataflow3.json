@@ -21,7 +21,7 @@
 					"name": "Lookup"
 				}
 			],
-			"script": "source(output(\n\t\tsr_no as integer,\n\t\temployee_first_name as string,\n\t\temployee_last_name as string,\n\t\tage as integer,\n\t\tschool as string,\n\t\tcollege as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tisolationLevel: 'READ_UNCOMMITTED',\n\tformat: 'table') ~> source1\nsource1 filter(sr_no > 0) ~> Filter1\nsource1, Filter1 lookup(source1@employee_first_name == source1@employee_first_name,\n\tmultiple: false,\n\tpickup: 'first',\n\tasc(source1@employee_first_name, true),\n\tbroadcast: 'none')~> Lookup"
+			"script": "source(output(\n\t\tsr_no as integer,\n\t\temployee_first_name as string,\n\t\temployee_last_name as string,\n\t\tage as integer,\n\t\tschool as string,\n\t\tcollege as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tisolationLevel: 'READ_UNCOMMITTED',\n\tformat: 'table') ~> source1\nsource1 filter(sr_no > 0) ~> Filter1\nsource1, Filter1 lookup(source1@employee_first_name == source1@employee_first_name,\n\tmultiple: false,\n\tpickup: 'first',\n\tasc(source1@sr_no, true),\n\tbroadcast: 'none')~> Lookup"
 		}
 	}
 }

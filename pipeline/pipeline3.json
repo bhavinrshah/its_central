@@ -1,0 +1,108 @@
+{
+	"name": "pipeline3",
+	"properties": {
+		"activities": [
+			{
+				"name": "Copy data1",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "AzureMySqlSource",
+						"queryTimeout": "02:00:00"
+					},
+					"sink": {
+						"type": "SqlServerSink"
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"name": "sr_no",
+									"type": "Int32"
+								},
+								"sink": {
+									"name": "sr_no",
+									"type": "Int32"
+								}
+							},
+							{
+								"source": {
+									"name": "employee_first_name",
+									"type": "String"
+								},
+								"sink": {
+									"name": "employee_first_name",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "employee_last_name",
+									"type": "String"
+								},
+								"sink": {
+									"name": "employee_last_name",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "age",
+									"type": "Int32"
+								},
+								"sink": {
+									"name": "age",
+									"type": "Int32"
+								}
+							},
+							{
+								"source": {
+									"name": "school",
+									"type": "String"
+								},
+								"sink": {
+									"name": "school",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "college",
+									"type": "String"
+								},
+								"sink": {
+									"name": "college",
+									"type": "String"
+								}
+							}
+						]
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "AzureMySqlTable1",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "SqlServerTable1",
+						"type": "DatasetReference"
+					}
+				]
+			}
+		],
+		"annotations": []
+	}
+}

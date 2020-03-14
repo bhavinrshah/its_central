@@ -9,7 +9,31 @@
 		"type": "Json",
 		"typeProperties": {
 			"location": {
-				"type": "AzureDataLakeStoreLocation"
+				"type": "AzureDataLakeStoreLocation",
+				"fileName": "employees.json"
+			}
+		},
+		"schema": {
+			"type": "object",
+			"properties": {
+				"sr_no": {
+					"type": "integer"
+				},
+				"employee_first_name": {
+					"type": "string"
+				},
+				"employee_last_name": {
+					"type": "string"
+				},
+				"age": {
+					"type": "integer"
+				},
+				"school": {
+					"type": "string"
+				},
+				"college": {
+					"type": "string"
+				}
 			}
 		}
 	}

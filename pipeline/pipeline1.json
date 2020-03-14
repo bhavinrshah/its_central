@@ -20,10 +20,13 @@
 						"queryTimeout": "02:00:00"
 					},
 					"sink": {
-						"type": "ParquetSink",
+						"type": "JsonSink",
 						"storeSettings": {
-							"type": "AzureDataLakeStoreWriteSettings",
-							"maxConcurrentConnections": 2
+							"type": "AzureDataLakeStoreWriteSettings"
+						},
+						"formatSettings": {
+							"type": "JsonWriteSettings",
+							"quoteAllText": true
 						}
 					},
 					"enableStaging": false,
@@ -36,8 +39,7 @@
 									"type": "Int32"
 								},
 								"sink": {
-									"name": "sr_no",
-									"type": "Int32"
+									"path": "$['sr_no']"
 								}
 							},
 							{
@@ -46,8 +48,7 @@
 									"type": "String"
 								},
 								"sink": {
-									"name": "employee_first_name",
-									"type": "String"
+									"path": "$['employee_first_name']"
 								}
 							},
 							{
@@ -56,8 +57,7 @@
 									"type": "String"
 								},
 								"sink": {
-									"name": "employee_last_name",
-									"type": "String"
+									"path": "$['employee_last_name']"
 								}
 							},
 							{
@@ -66,8 +66,7 @@
 									"type": "Int32"
 								},
 								"sink": {
-									"name": "age",
-									"type": "Int32"
+									"path": "$['age']"
 								}
 							},
 							{
@@ -76,8 +75,7 @@
 									"type": "String"
 								},
 								"sink": {
-									"name": "school",
-									"type": "String"
+									"path": "$['school']"
 								}
 							},
 							{
@@ -86,8 +84,7 @@
 									"type": "String"
 								},
 								"sink": {
-									"name": "college",
-									"type": "String"
+									"path": "$['college']"
 								}
 							}
 						]
@@ -101,33 +98,10 @@
 				],
 				"outputs": [
 					{
-						"referenceName": "Parquet1",
+						"referenceName": "Json1",
 						"type": "DatasetReference"
 					}
 				]
-			},
-			{
-				"name": "dataflow1",
-				"type": "ExecuteDataFlow",
-				"dependsOn": [],
-				"policy": {
-					"timeout": "7.00:00:00",
-					"retry": 0,
-					"retryIntervalInSeconds": 30,
-					"secureOutput": false,
-					"secureInput": false
-				},
-				"userProperties": [],
-				"typeProperties": {
-					"dataflow": {
-						"referenceName": "dataflow1",
-						"type": "DataFlowReference"
-					},
-					"compute": {
-						"coreCount": 8,
-						"computeType": "General"
-					}
-				}
 			}
 		],
 		"annotations": []

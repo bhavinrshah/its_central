@@ -1,0 +1,28 @@
+{
+	"name": "Parquet2",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureBlobStorage1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Parquet",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"container": "itsazure-2020-03-14t08-28-37-388z"
+			},
+			"compressionCodec": "snappy"
+		},
+		"schema": [
+			{
+				"name": "age",
+				"type": "INT64"
+			},
+			{
+				"name": "name",
+				"type": "UTF8"
+			}
+		]
+	}
+}

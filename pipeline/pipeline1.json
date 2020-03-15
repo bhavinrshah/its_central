@@ -20,13 +20,9 @@
 						"queryTimeout": "02:00:00"
 					},
 					"sink": {
-						"type": "JsonSink",
+						"type": "ParquetSink",
 						"storeSettings": {
-							"type": "AzureDataLakeStoreWriteSettings"
-						},
-						"formatSettings": {
-							"type": "JsonWriteSettings",
-							"quoteAllText": true
+							"type": "AzureBlobStorageWriteSettings"
 						}
 					},
 					"enableStaging": false,
@@ -35,56 +31,18 @@
 						"mappings": [
 							{
 								"source": {
-									"name": "sr_no",
-									"type": "Int32"
-								},
-								"sink": {
-									"path": "$['sr_no']"
-								}
-							},
-							{
-								"source": {
-									"name": "employee_first_name",
-									"type": "String"
-								},
-								"sink": {
-									"path": "$['employee_first_name']"
-								}
-							},
-							{
-								"source": {
-									"name": "employee_last_name",
-									"type": "String"
-								},
-								"sink": {
-									"path": "$['employee_last_name']"
-								}
-							},
-							{
-								"source": {
 									"name": "age",
 									"type": "Int32"
 								},
 								"sink": {
-									"path": "$['age']"
+									"name": "age",
+									"type": "Int64"
 								}
 							},
 							{
-								"source": {
-									"name": "school",
-									"type": "String"
-								},
 								"sink": {
-									"path": "$['school']"
-								}
-							},
-							{
-								"source": {
-									"name": "college",
+									"name": "name",
 									"type": "String"
-								},
-								"sink": {
-									"path": "$['college']"
 								}
 							}
 						]
@@ -98,7 +56,7 @@
 				],
 				"outputs": [
 					{
-						"referenceName": "Json1",
+						"referenceName": "Parquet2",
 						"type": "DatasetReference"
 					}
 				]

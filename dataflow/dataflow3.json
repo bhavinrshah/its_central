@@ -21,7 +21,7 @@
 					"name": "dataExists"
 				}
 			],
-			"script": "source(output(\n\t\tsr_no as integer,\n\t\temployee_first_name as string,\n\t\temployee_last_name as string,\n\t\tage as integer,\n\t\tschool as string,\n\t\tcollege as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tisolationLevel: 'READ_UNCOMMITTED',\n\tformat: 'table') ~> source1\nsource1 select(mapColumn(\n\t\ts_no = sr_no,\n\t\temployee_f_name = employee_first_name,\n\t\temployee_l_name = employee_last_name,\n\t\tages = age,\n\t\tschools = school,\n\t\tcolleges = college\n\t),\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true) ~> Select1\nsource1, Select1 exists(employee_first_name == employee_f_name,\n\tnegate:true,\n\tbroadcast: 'none')~> dataExists"
+			"script": "source(output(\n\t\tsr_no as integer,\n\t\temployee_first_name as string,\n\t\temployee_last_name as string,\n\t\tage as integer,\n\t\tschool as string,\n\t\tcollege as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tisolationLevel: 'READ_UNCOMMITTED',\n\tformat: 'table') ~> source1\nsource1 select(mapColumn(\n\t\ts_no = sr_no,\n\t\temployee_f_name = employee_first_name,\n\t\temployee_l_name = employee_last_name,\n\t\tages = age,\n\t\tschools = school,\n\t\tcolleges = college\n\t),\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true) ~> Select1\nsource1, Select1 exists(sr_no == s_no,\n\tnegate:true,\n\tbroadcast: 'none')~> dataExists"
 		}
 	}
 }

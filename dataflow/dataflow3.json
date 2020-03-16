@@ -26,9 +26,12 @@
 				},
 				{
 					"name": "Grouping"
+				},
+				{
+					"name": "Dedup"
 				}
 			],
-			"script": "source(output(\n\t\tsr_no as integer,\n\t\temployee_first_name as string,\n\t\temployee_last_name as string,\n\t\tage as integer,\n\t\tschool as string,\n\t\tcollege as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tisolationLevel: 'READ_UNCOMMITTED',\n\tformat: 'table') ~> source1\nsource(output(\n\t\tsr_no as integer,\n\t\temployee_first_name as string,\n\t\temployee_last_name as string,\n\t\tage as integer,\n\t\tschool as string,\n\t\tcollege as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tisolationLevel: 'READ_UNCOMMITTED',\n\tformat: 'table') ~> source2\nsource1 select(mapColumn(\n\t\tsr_no,\n\t\temployee_first_name,\n\t\temployee_last_name,\n\t\tage,\n\t\tschool,\n\t\tcollege\n\t),\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true) ~> dupes\nsource2 aggregate(groupBy(employee_first_name)) ~> Grouping"
+			"script": "source(output(\n\t\tsr_no as integer,\n\t\temployee_first_name as string,\n\t\temployee_last_name as string,\n\t\tage as integer,\n\t\tschool as string,\n\t\tcollege as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tisolationLevel: 'READ_UNCOMMITTED',\n\tformat: 'table') ~> source1\nsource(output(\n\t\tsr_no as integer,\n\t\temployee_first_name as string,\n\t\temployee_last_name as string,\n\t\tage as integer,\n\t\tschool as string,\n\t\tcollege as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tisolationLevel: 'READ_UNCOMMITTED',\n\tformat: 'table') ~> source2\nsource1 select(mapColumn(\n\t\tsr_no,\n\t\temployee_first_name,\n\t\temployee_last_name,\n\t\tage,\n\t\tschool,\n\t\tcollege\n\t),\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true) ~> dupes\nsource2 aggregate(groupBy(employee_first_name),\n\temployeeFIrstNameCount = sum(1),\n\t\temployeeFirstName = max(employee_first_name)) ~> Grouping\nGrouping, dupes exists(ERROR_FUNCTION('') == ERROR_FUNCTION(''),\n\tnegate:false,\n\tbroadcast: 'none')~> Dedup"
 		}
 	}
 }
